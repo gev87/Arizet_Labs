@@ -8,21 +8,21 @@ import Typography from "@mui/material/Typography";
 import { NetTref } from "./SvgImages";
 import styled from "@emotion/styled";
 import Footer from "./Footer";
-
+import { useNavigate } from "react-router-dom";
 
 const rectangleStyle = {
 	// position: "fixed",
 	// width: "612px",
-	width:"500px",
+	width: "500px",
 	height: "400px",
 	// left: "150px",
 	// top: "170px",
 	background: "#FEF6F0",
 	boxShadow: "0px 0px 30px rgba(91, 105, 152, 0.2)",
 	borderRadius: "16px",
-	mt:17,
+	mt: 17,
 	mb: 27,
-	ml:	15
+	ml: 15,
 };
 
 const NetTrefPlaceStyle = {
@@ -30,11 +30,9 @@ const NetTrefPlaceStyle = {
 	width: "500px",
 	// height: "80px",
 	left: "1000px",
-	margin: "20px 50px 20px 250px"
-// 	top: "50px",
+	margin: "20px 50px 20px 250px",
+	// 	top: "50px",
 };
-
-
 
 const headerStyle = {
 	position: "absolute",
@@ -53,10 +51,10 @@ const headerStyle = {
 	color: "#3E352F",
 };
 
-
 export default function SignIn() {
-	const [hasError,setHasError] = useState(false);
+	const [hasError, setHasError] = useState(false);
 	const header = "get lovely cuties in your area";
+	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -68,7 +66,7 @@ export default function SignIn() {
 		};
 		const url = "https://iconnect247.net/api/v2/sessions";
 		try {
-			const response = await fetch(url,{
+			const response = await fetch(url, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -81,38 +79,39 @@ export default function SignIn() {
 			}
 			const result = await response.json();
 			setHasError(false);
-			console.log("result",result)
+			navigate("/home", { state: { ...result, username: credentials.username } });
+			console.log("result", result);
 		} catch (error) {
 			setHasError(true);
 		}
 	};
- 	
-const CustomTextField = styled(TextField)({
-	"& .MuiOutlinedInput-root,& .MuiInputBase-root": {
-		"& fieldset": {
-			borderColor: "#F6A95F", 
-			borderWidth: 2,
-			borderRadius: 12,
-			margin: "20px 0px 0px 0px",
-			width: "300px",
+
+	const CustomTextField = styled(TextField)({
+		"& .MuiOutlinedInput-root,& .MuiInputBase-root": {
+			"& fieldset": {
+				borderColor: "#F6A95F",
+				borderWidth: 2,
+				borderRadius: 12,
+				margin: "20px 0px 0px 0px",
+				width: "300px",
+			},
+			"&:hover fieldset": {
+				borderColor: "#F6A95F",
+			},
+			"&.Mui-focused fieldset": {
+				borderColor: "#F6A95F",
+			},
+			"&.Mui-error fieldset": {
+				borderColor: "red",
+			},
+			"& .MuiInputLabel-root": {
+				color: "#F6A95F",
+			},
+			"& .MuiInputLabel-root.Mui-focused": {
+				display: "none",
+			},
 		},
-		"&:hover fieldset": {
-			borderColor: "#F6A95F", 
-		},
-		"&.Mui-focused fieldset": {
-			borderColor: "#F6A95F", 
-		},
-		"&.Mui-error fieldset": {
-			borderColor: "red", 
-		},
-		"& .MuiInputLabel-root": {
-			color: "#F6A95F",
-		},
-		"& .MuiInputLabel-root.Mui-focused": {
-			display: "none",
-		}
-	},
-});
+	});
 
 	return (
 		<Box
