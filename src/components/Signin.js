@@ -11,12 +11,9 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 
 const rectangleStyle = {
-	// position: "fixed",
-	// width: "612px",
+
 	width: "500px",
 	height: "400px",
-	// left: "150px",
-	// top: "170px",
 	background: "#FEF6F0",
 	boxShadow: "0px 0px 30px rgba(91, 105, 152, 0.2)",
 	borderRadius: "16px",
@@ -25,27 +22,16 @@ const rectangleStyle = {
 	ml: 15,
 };
 
-const NetTrefPlaceStyle = {
-	position: "absolute",
-	width: "500px",
-	// height: "80px",
-	left: "1000px",
-	margin: "20px 50px 20px 250px",
-	// 	top: "50px",
-};
 
 const headerStyle = {
 	position: "absolute",
 	width: "506px",
 	height: "41px",
-	// left: "203px",
-	// top: "220px",
 	fontFamily: "Manrope",
 	fontStyle: "normal",
 	fontWeight: 800,
-	// fontSize: "25px",
+	fontSize: "20px",
 	lineHeight: "41px",
-	/* identical to box height */
 	textAlign: "center",
 	textTransform: "uppercase",
 	color: "#3E352F",
@@ -182,20 +168,21 @@ export default function SignIn() {
 							</Button>
 						</Box>
 					</Box>
-					<Box item align="right">
-						<Link href="#" variant="body2" sx={{ color: "#F6A95F" }}>
-							{"Don't have an account? Sign Up"}
+					<Box item align="center" sx={{ color: "black" }}>
+						Don't have an account?
+						<Link href="/signup" variant="body2">
+							{" Sign Up"}
 						</Link>
 					</Box>
 				</Box>
 				<Footer />
 			</Box>
-			<Box>
-				<Box sx={NetTrefPlaceStyle}>
+			<Box sx={{ ml: 5 }}>
+				<Box sx={{ ml: 60, width: "500px" }}>
 					<NetTref />
 				</Box>
 				<Box sx={{ margin: "50px 200px 10px" }}>
-					<img width="90%" src="/Pic1.png" alt="rightPhoto" />
+					<img width="70%" src="/Pic1.png" alt="rightPhoto" />
 				</Box>
 			</Box>
 		</Box>
